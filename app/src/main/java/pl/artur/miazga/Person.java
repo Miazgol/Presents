@@ -2,7 +2,7 @@ package pl.artur.miazga;
 
 import android.text.Editable;
 
-public class Person {
+class Person {
 
     private String name;
     private String number;
@@ -18,10 +18,5 @@ public class Person {
 
     String getNumber() {
         return number;
-    }
-
-    @Override
-    public String toString() {
-        return name + " (" + number + ") Kupuje prezent dla: ";
     }
 }

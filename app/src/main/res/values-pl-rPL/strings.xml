@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Presents</string>
+    <string name="name">Imię</string>
+    <string name="number">Numer</string>
+    <string name="addPerson">Dodaj Osobę</string>
+    <string name="checkPermission">Sprawdź Uprawnienia</string>
+    <string name="sendSms">Wyślij SMS</string>
+</resources>

@@ -21,58 +21,58 @@ public class MainActivity extends AppCompatActivity {
 
     private static List<Person> persons = new ArrayList<>();
 
-    EditText imie;
-    EditText numer;
-    Button wyslijSmsButton;
+    EditText name;
+    EditText number;
+    Button sendSmsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imie = (EditText) findViewById(R.id.imie);
-        numer = (EditText) findViewById(R.id.numer);
-        wyslijSmsButton = (Button) findViewById(R.id.wyslij_button);
+        name = (EditText) findViewById(R.id.name);
+        number = (EditText) findViewById(R.id.number);
+        sendSmsButton = (Button) findViewById(R.id.send_button);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            wyslijSmsButton.setEnabled(true);
+            sendSmsButton.setEnabled(true);
         } else {
-            Toast.makeText(this, "Brak uprawnień", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No permission", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void sprawdzUprawnieniaClick(View view) {
-        String uprawnienie = Manifest.permission.SEND_SMS;
+    public void checkPermissionClick(View view) {
+        String permission = Manifest.permission.SEND_SMS;
         int REQUEST_CODE = 111;
 
-        if (ContextCompat.checkSelfPermission(this, uprawnienie) == PackageManager.PERMISSION_GRANTED) {
-            wyslijSmsButton.setEnabled(true);
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
+            sendSmsButton.setEnabled(true);
         } else {
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{uprawnienie}, REQUEST_CODE);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, REQUEST_CODE);
         }
     }
 
-    public void dodajOsobe(View view) {
-        persons.add(new Person(imie.getText(), numer.getText()));
+    public void addPerson(View view) {
+        persons.add(new Person(name.getText(), number.getText()));
     }
 
-    public void wyslijSmsButton(View view) {
+    public void sendSmsButton(View view) {
 
         Collections.shuffle(persons);
         for (int i = 0; i < persons.size(); i++) {
             try {
-                String numer = persons.get(i).getNumber();
-                String imie = persons.get(i + 1).getName();
+                String number = persons.get(i).getNumber();
+                String name = persons.get(i + 1).getName();
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(numer, null, imie, null, null);
+                smsManager.sendTextMessage(number, null, name, null, null);
             } catch (Exception ignore) {
-                String numer = persons.get(persons.size()-1).getNumber();
-                String imie = persons.get(0).getName();
+                String number = persons.get(persons.size() - 1).getNumber();
+                String name = persons.get(0).getName();
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(numer, null, imie, null, null);
+                smsManager.sendTextMessage(number, null, name, null, null);
             }
 
         }

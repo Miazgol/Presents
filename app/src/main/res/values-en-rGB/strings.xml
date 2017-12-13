@@ -1,8 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Presents</string>
+    <string name="addPerson">Add Person</string>
     <string name="name">Name</string>
     <string name="number">Number</string>
-    <string name="addPerson">Add Person</string>
     <string name="checkPermission">Check Permission</string>
     <string name="sendSms">Send SMS</string>
 </resources>
